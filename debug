@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Recursion
+{
+    internal class Program
+    {
+         static string date (months monthName, int day, int year)
+        {
+            int month = (int)monthName;
+          string dateFormat = month + "-"  + day + "-" + year;
+            return dateFormat;
+        }
+        
+        static void Main(string[] args)
+        {
+            //Question 01
+           // below function takes month, date and year as parameter and return date in format specified
+           Console.WriteLine( date(months.august , 21, 2023));
+
+            //Question 02
+
+            Console.WriteLine("The number of charactes in each month");
+            foreach (string item in Enum.GetNames(typeof(months)))
+            {
+                Console.WriteLine(item.Length);
+            }
+
+            //or
+            Console.WriteLine(" \n or \n ");
+
+            for (int i = 0; i < Enum.GetNames(typeof(months)).Length; i++)
+            {
+                Console.WriteLine(Enum.GetNames(typeof(months))[i].Length);
+            }
+
+            // Question 03
+
+            Console.WriteLine("The of apple is " + (int)fruits.apple);
+
+            Console.ReadLine();
+
+        }
+       enum months
+        {
+            janaury = 1,
+            febraury = 2,
+            march = 3,
+            april = 4,
+            may = 5,
+            june = 6,
+            july = 7,
+            august = 8,
+            september = 9,
+            october = 10,
+            november = 11,
+            december = 12
+        }
+
+        enum fruits
+        {
+            mango = 40,
+            banana = 50,
+            apple = 60,
+            orange = 70,
+            pineapple = 80,
+            strawberries = 75
+        }
+    }
+}
