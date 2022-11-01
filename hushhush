@@ -1,0 +1,69 @@
+using System;
+using System.CodeDom;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    internal class Program
+    {
+       
+          
+        static void Main(string[] args)
+        {
+           
+         
+
+            Console.WriteLine("Enter value 1");
+            int num1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Operator");
+            char operation = Convert.ToChar(Console.ReadLine());
+            Console.WriteLine("Enter value 2");
+            int num2 = Convert.ToInt32(Console.ReadLine());
+
+            //for (int i = 0; i < Enum.GetValues(typeof(ArithOperator)).Length; i++)
+            //{
+                //if (Enum.GetNames(typeof(ArithOperator))[i] == operation.ToString())
+                //{
+                //    Console.WriteLine("The answer is " + (num1  ArithOperator.plus num2));
+                //}
+                if(int()ArithOperator.plus == operation)
+                {
+                    Console.WriteLine("The answer is " + (num1+num2));
+                 }
+                else if(ArithOperator.minus.ToString() == operation.ToString())
+                {
+                    Console.WriteLine("The answer is " + (num1 - num2));
+
+                }
+                else if (ArithOperator.multiply.ToString() == operation.ToString())
+                {
+                    Console.WriteLine("The answer is " + (num1 - num2));
+
+                }
+                else if (ArithOperator.divide.ToString() == operation.ToString())
+                {
+                    Console.WriteLine("The answer is " + (num1 / num2));
+
+                }
+            //}
+            Console.ReadLine();
+           
+
+        }
+
+        enum ArithOperator
+        {
+           plus = '+' ,
+           minus = '-',
+           multiply = '*',
+           divide = '/'
+
+
+
+
+        }
+    }
+}
