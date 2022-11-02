@@ -1,0 +1,295 @@
+//Question 01
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ConsoleApp4
+{
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+            Example2();
+            Console.ReadLine();
+        }
+        //filtering and selection
+        public static void Example2()
+        {
+            List<Student> students = new List<Student>
+            {
+                new Student{name="UMAR", age=22},
+                new Student{name="UMA", age=26},
+                new Student{name="UMR", age=2},
+                new Student{name="UAR", age=12},
+
+            };
+
+            var teenQuery = from student in students where student.age < 18 select student;
+
+            foreach (var stud in teenQuery)
+            {
+                Console.WriteLine(stud.name + stud.age);
+            }
+        }
+
+
+    }
+    class Student
+    {
+        public string name;
+        public int age;
+    }
+}
+
+
+
+
+
+
+
+//Question 02
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Question_02
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] numbers = new int[7] { 1, 2, 3, 4, 5, 6, 7 };
+            var evenQuery = from number in numbers where number % 2 == 0 select number;
+            foreach (var number in evenQuery)
+            {
+                Console.WriteLine(number);
+            }
+            Console.ReadLine();
+        }
+       
+    }
+}
+
+
+
+
+//Question 03
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Question_03
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] persons = new string[5] { "muaz", "hamza", "Muhammad", "umar", "jahau" };
+            var perQuery = from person in persons where person[0] == 'm' select person;
+            foreach (var item in perQuery)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+
+//Question 04
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Question_04
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string freq = "muhammad";
+            var freqQuery = from str in freq group str by str into g select g;
+            foreach (var item in freqQuery)
+            {
+                Console.WriteLine("frequency of " + item.Key + " is " + item.Count() );
+            }
+          
+            Console.ReadLine();
+        }
+    }
+}
+
+
+
+//Question 05
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Question_5
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<GroceryPrice> price = new List<GroceryPrice>
+            {
+                new GroceryPrice{name="Potato", price=10},
+                new GroceryPrice{name="Tomato", price=50.50},
+                new GroceryPrice{name="Mango", price=60},
+                new GroceryPrice{name="Apple", price=40},
+                new GroceryPrice{name="Cola", price=70},
+                new GroceryPrice{name="Cabbage", price=100}
+            };
+            List<GroceryQty> qty = new List<GroceryQty>
+            {
+                new GroceryQty{name="Potato",  qty = 3},
+                new GroceryQty{name="Tomato",  qty = 1},
+                new GroceryQty{name="Mango", qty = 5},
+                new GroceryQty{name="Apple", qty = 3},
+                new GroceryQty{name="Cola",  qty = 7},
+                new GroceryQty{name="Cabbage",  qty = 2}
+            };
+
+            var grocQuery = from pri in price
+                            join qt in qty on pri.name equals qt.name select new { name = qt.name, price = pri.price, quantitiy = qt.qty };
+            Console.WriteLine("Name\tAmount \t Quantity \t\t Total");
+            Console.WriteLine("_________________________________________________");
+            foreach (var item in grocQuery)
+            {
+                Console.WriteLine("{0}\t  {1} \t {2} \t\t {3} ", item.name, item.price, item.quantitiy, item.quantitiy * item.price);
+            }
+            Console.ReadLine();
+        }
+       
+    }
+    class GroceryPrice
+    {
+        public string name;
+        public double price;
+        
+       
+    }
+    class GroceryQty
+    {
+        public string name;
+        public int qty;
+    }
+}
+
+
+//Question 06
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Question_6
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<GroceryPrice> price = new List<GroceryPrice>
+            {
+                new GroceryPrice{name="Potato", price=10},
+                new GroceryPrice{name="Tomato", price=50.50},
+                new GroceryPrice{name="Mango", price=60},
+                new GroceryPrice{name="Apple", price=40},
+                new GroceryPrice{name="Cola", price=70},
+                new GroceryPrice{name="Cabbage", price=100}
+            };
+            List<GroceryQty> qty = new List<GroceryQty>
+            {
+                new GroceryQty{name="Potato",  qty = 3},
+                new GroceryQty{name="Tomato",  qty = 1},
+                new GroceryQty{name="Mango", qty = 5},
+                new GroceryQty{name="Apple", qty = 3},
+                new GroceryQty{name="Cola",  qty = 7},
+                new GroceryQty{name="Cabbage",  qty = 2}
+            };
+
+            var grocQuery = from pri in price.Take(3)
+                            join qt in qty.Take(3) on pri.name equals qt.name 
+                            select new { name = qt.name, price = pri.price, quantitiy = qt.qty };
+            Console.WriteLine("Name\tAmount \t Quantity \t\t Total");
+            Console.WriteLine("_________________________________________________");
+            foreach (var item in grocQuery)
+            {
+                Console.WriteLine("{0}\t  {1} \t {2} \t\t {3} ", item.name, item.price, item.quantitiy, item.quantitiy * item.price);
+            }
+            Console.ReadLine();
+        }
+
+    }
+    class GroceryPrice
+    {
+        public string name;
+        public double price;
+
+
+    }
+    class GroceryQty
+    {
+        public string name;
+        public int qty;
+    }
+}
+
+
+
+//Question 07
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Q7
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> students = new List<string>
+            {
+                "Ahmed",
+                "Hussain",
+                "Hamza",
+                "Asif",
+                "Rauf",
+                "Imtiaz",
+                "Jameel",
+                "Mujahid",
+                "Izhar",
+                "Hisahm"
+            };
+            var stud = from student in students.Skip(2) select student;
+            foreach (var item in stud)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadLine();
+        }
+    }
+}
